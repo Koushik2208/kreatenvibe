@@ -19,14 +19,27 @@ export async function GET(req: Request) {
       `/files?path=${path}&limit=${limit}&skip=${skip}`
     );
 
-    const items: IKFile[] = data.map((item) => ({
-      id: item.fileId,
-      name: item.name,
-      url: item.url,
-      thumbnailUrl: item.thumbnail ?? item.url,
-      type: item.fileType,
-      path: item.filePath,
-    }));
+    const items: IKFile[] = data.map((item) => {
+      // ImageKit has a 25.0 MegaPixel transformation limit.
+      // For images > 25MP, append tr=orig-true so requests bypass image transformation and serve raw original without 400 Bad Request.
+      const isOversized =
+        item.fileType === "image" &&
+        Boolean(item.width && item.height && item.width * item.height > 25_000_000);
+
+      let url = item.url;
+      if (isOversized && !url.includes("tr=") && !url.includes("/tr:")) {
+        url = url.includes("?") ? `${url}&tr=orig-true` : `${url}?tr=orig-true`;
+      }
+
+      return {
+        id: item.fileId,
+        name: item.name,
+        url,
+        thumbnailUrl: item.thumbnail ?? url,
+        type: item.fileType,
+        path: item.filePath,
+      };
+    });
 
     return NextResponse.json(items);
   } catch (error) {

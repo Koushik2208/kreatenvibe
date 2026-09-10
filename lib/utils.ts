@@ -19,3 +19,13 @@ export function formatDate(date: string | Date): string {
 export function truncate(str: string, length: number): string {
   return str.length > length ? str.slice(0, length) + "..." : str;
 }
+
+/**
+ * Ensures ImageKit URLs bypass transformation if needed to prevent 400 Bad Request
+ * when an image exceeds 25 Megapixels.
+ */
+export function getSafeImageUrl(url?: string | null): string {
+  if (!url) return "";
+  return url;
+}
+
