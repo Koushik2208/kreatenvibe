@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { IProject } from "@/database";
 
-type MediaItem = { url: string; fileId: string; type: "image" | "video" };
-
 export default function ProjectCard({
   project,
   index,

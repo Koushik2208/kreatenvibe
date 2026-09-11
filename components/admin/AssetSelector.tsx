@@ -137,7 +137,7 @@ export default function AssetSelector({
       const foldersRes = await fetch(`/api/folders?path=${encodeURIComponent(currentPath)}`);
       const foldersData = await foldersRes.json();
       setFolders(Array.isArray(foldersData) ? foldersData : []);
-    } catch (err) {
+    } catch {
       alert("Failed to create folder");
     } finally {
       setLoading(false);
@@ -158,7 +158,7 @@ export default function AssetSelector({
       const filesRes = await fetch(`/api/assets?folder=${encodeURIComponent(currentPath)}`);
       const data = await filesRes.json();
       setFiles(Array.isArray(data) ? data : []);
-    } catch (err) {
+    } catch {
       alert("Failed to move file");
     } finally {
       setLoading(false);

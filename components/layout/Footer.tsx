@@ -42,6 +42,7 @@ export default function Footer() {
                                 width={180}
                                 height={40}
                                 className="h-10 w-auto object-contain brightness-0 invert"
+                                style={{ width: "auto", height: "auto" }}
                             />
                         </Link>
 

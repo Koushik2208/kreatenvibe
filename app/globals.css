@@ -182,12 +182,11 @@ h6 {
 }
 
 .stack-content > svg {
-  width: calc(var(--w-stack) * 0.2);
-  height: calc(var(--w-stack) * 0.2);
+  width: calc(var(--w-stack) * 0.24);
+  height: calc(var(--w-stack) * 0.24);
   color: #ffffff;
   opacity: 1;
-  animation: stack-opacity 9.4s cubic-bezier(1, 0, 0, 1) forwards
-    calc(var(--delay) - 4.3s);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
 }
 
 .stack-label {
@@ -198,16 +197,7 @@ h6 {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.75);
-}
-
-@keyframes stack-opacity {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+  color: rgb(255 255 255 / 0.85);
 }
 
 .stack-lines {

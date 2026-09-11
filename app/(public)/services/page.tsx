@@ -114,10 +114,13 @@ export default function ServicesPage() {
                     }`}
                 >
                   {service.image ? (
-                    <img
+                    <Image
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      unoptimized
                     />
                   ) : (
                     <span className="font-heading text-2xl font-semibold text-foreground/20">

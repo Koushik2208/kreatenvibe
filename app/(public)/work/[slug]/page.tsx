@@ -21,9 +21,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const images = project.media
-    ?.filter((m: any) => m.type === "image")
-    .map((m: any) => m.url) || [];
+  const images =
+    project.media
+      ?.filter((m) => m.type === "image")
+      .map((m) => m.url) || [];
 
   return {
     title: project.title,

@@ -1,4 +1,6 @@
-import { Code, Robot, ChartBar } from "@phosphor-icons/react/dist/ssr";
+"use client";
+
+import { Code, Robot, ChartBar } from "@phosphor-icons/react";
 
 const CARDS = [
   { tone: "is-ink", label: "Software", Icon: Code },
@@ -12,7 +14,7 @@ export function ShowcaseStack() {
       {CARDS.map(({ tone, label, Icon }) => (
         <div key={tone} className={`stack-card ${tone}`}>
           <div className="stack-content">
-            <Icon weight="light" />
+            <Icon weight="bold" />
             <span className="stack-label">{label}</span>
           </div>
         </div>
