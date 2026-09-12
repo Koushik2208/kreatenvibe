@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getProjectBySlug } from "@/lib/actions/project.action";
+import { getProjectBySlug, getProjects } from "@/lib/actions/project.action";
 import ProjectDetail from "@/components/sections/ProjectDetail";
 
 export const dynamic = "force-dynamic";
@@ -52,11 +52,59 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
+  // Fetch adjacent projects for Prev / Next navigation
+  let prevProject: { title: string; slug: string; label: string } | null = null;
+  let nextProject: { title: string; slug: string; label: string } | null = null;
+
+  try {
+    const allProjectsRes = await getProjects({ pageSize: 100 });
+    const allProjects = allProjectsRes.data?.projects ?? [];
+
+    if (allProjects.length > 1) {
+      const currentIndex = allProjects.findIndex(
+        (p) => p.slug === resolvedParams.slug
+      );
+
+      if (currentIndex !== -1) {
+        const prevIdx =
+          (currentIndex - 1 + allProjects.length) % allProjects.length;
+        const nextIdx = (currentIndex + 1) % allProjects.length;
+
+        if (prevIdx !== currentIndex) {
+          prevProject = {
+            title: allProjects[prevIdx].title,
+            slug: allProjects[prevIdx].slug,
+            label: allProjects[prevIdx].label,
+          };
+        }
+
+        if (nextIdx !== currentIndex && nextIdx !== prevIdx) {
+          nextProject = {
+            title: allProjects[nextIdx].title,
+            slug: allProjects[nextIdx].slug,
+            label: allProjects[nextIdx].label,
+          };
+        } else if (nextIdx !== currentIndex) {
+          nextProject = {
+            title: allProjects[nextIdx].title,
+            slug: allProjects[nextIdx].slug,
+            label: allProjects[nextIdx].label,
+          };
+        }
+      }
+    }
+  } catch {
+    // Graceful fallback
+  }
+
   return (
     <main className="bg-background text-foreground">
-      <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 lg:px-8 lg:pb-32 lg:pt-32">
-        <ProjectDetail project={project} />
-      </section>
+      <ProjectDetail
+        project={project}
+        prevProject={prevProject}
+        nextProject={nextProject}
+      />
     </main>
   );
 }
+

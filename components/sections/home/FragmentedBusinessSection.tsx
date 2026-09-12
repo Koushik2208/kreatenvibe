@@ -247,6 +247,7 @@ export function FragmentedBusinessSection() {
                 width={38}
                 height={38}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
 
@@ -262,6 +263,7 @@ export function FragmentedBusinessSection() {
                 width={36}
                 height={36}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
 
@@ -277,6 +279,7 @@ export function FragmentedBusinessSection() {
                 width={36}
                 height={36}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
 
@@ -292,6 +295,7 @@ export function FragmentedBusinessSection() {
                 width={40}
                 height={40}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
 
@@ -307,6 +311,7 @@ export function FragmentedBusinessSection() {
                 width={38}
                 height={38}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
 

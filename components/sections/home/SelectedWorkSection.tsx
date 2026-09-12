@@ -48,13 +48,13 @@ export function SelectedWorkSection({
   const displayList =
     projects.length > 0
       ? projects.slice(0, 3).map((p, i) => ({
-          _id: String(p._id),
-          title: p.title,
-          label: p.label,
-          slug: p.slug,
-          challenge: p.challenge,
-          image: p.media?.[0]?.url || fallbackProjects[i % fallbackProjects.length].image,
-        }))
+        _id: String(p._id),
+        title: p.title,
+        label: p.label,
+        slug: p.slug,
+        challenge: p.challenge,
+        image: p.media?.[0]?.url || fallbackProjects[i % fallbackProjects.length].image,
+      }))
       : fallbackProjects;
 
   useEffect(() => {
@@ -127,19 +127,17 @@ export function SelectedWorkSection({
             return (
               <div
                 key={item._id}
-                className={`work-gallery-item grid gap-10 items-center lg:grid-cols-12 ${
-                  isReversed ? "lg:grid-flow-dense" : ""
-                }`}
+                className={`work-gallery-item grid gap-10 items-center lg:grid-cols-12 ${isReversed ? "lg:grid-flow-dense" : ""
+                  }`}
               >
                 {/* Fixed-Height Image Container with Top-Aligned Parallax Scroll */}
                 <div
-                  className={`overflow-hidden rounded-3xl border border-foreground/10 bg-neutral-900 shadow-xl ${
-                    idx === 0
+                  className={`overflow-hidden rounded-xl bg-neutral-900 shadow-xl ${idx === 0
                       ? "lg:col-span-8"
                       : isReversed
-                      ? "lg:col-span-7 lg:col-start-6"
-                      : "lg:col-span-7"
-                  }`}
+                        ? "lg:col-span-7 lg:col-start-6"
+                        : "lg:col-span-7"
+                    }`}
                 >
                   <Link href={`/work/${item.slug}`} className="group block overflow-hidden">
                     <div className="relative h-[380px] sm:h-[460px] lg:h-[520px] w-full overflow-hidden bg-neutral-950">
@@ -161,13 +159,12 @@ export function SelectedWorkSection({
 
                 {/* Text Metadata */}
                 <div
-                  className={`space-y-4 ${
-                    idx === 0
+                  className={`space-y-4 ${idx === 0
                       ? "lg:col-span-4"
                       : isReversed
-                      ? "lg:col-span-5 lg:col-start-1"
-                      : "lg:col-span-5"
-                  }`}
+                        ? "lg:col-span-5 lg:col-start-1"
+                        : "lg:col-span-5"
+                    }`}
                 >
                   <div className="flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-accent">
                     <span>0{idx + 1}</span>
